@@ -7,14 +7,15 @@ import java.util.List;
 
 public class ProductDAO {
 
+    private final static String baseUrl = "/webstore/ProductImages";
     private final List<Product> productList;
 
     public ProductDAO() {
         productList = Arrays.asList(
-                new Product(32, "White Cup", 7.50),
-                new Product(33, "Black Cup", 7.50),
-                new Product(21, "Doctor Who Cup", 7.50),
-                new Product(65, "Swan Cup", 7.50)
+                new Product(32, "White Cup", 7.50, baseUrl+"/whitecup.jpg"),
+                new Product(33, "Black Cup", 7.50, baseUrl+"/blackcup.jpg"),
+                new Product(21, "Doctor Who Cup", 7.50, baseUrl+"/doctorwho.jpg"),
+                new Product(65, "Swan Cup", 7.50, baseUrl+"/swan.jpg")
                 );
     }
 

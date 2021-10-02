@@ -14,6 +14,7 @@
     <div>
         <h3>${product.name}</h3>
         <span>${product.priceInEuros}</span>
+        <img src="${product.imageFile}" alt="image_cup" width="200" height="200">
         <form method="post">
             <button type="submit" name="pid" value="${product.pid}">Add to cart</button>
         </form>

@@ -5,11 +5,13 @@ public class Product {
     private int pid;
     private String name;
     private double priceInEuros;
+    private String imageFile;
 
-    public Product(int pid, String name, double priceInEuros) {
+    public Product(int pid, String name, double priceInEuros, String imageFile) {
         this.pid = pid;
         this.name = name;
         this.priceInEuros = priceInEuros;
+        this.imageFile = imageFile;
     }
 
     public int getPid() {
@@ -22,6 +24,10 @@ public class Product {
 
     public double getPriceInEuros() {
         return priceInEuros;
+    }
+
+    public String getImageFile() {
+        return imageFile;
     }
 
     @Override
