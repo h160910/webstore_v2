@@ -1,8 +1,8 @@
 package hvl.dat152.servlets;
 
-import hvl.dat152.database.ProductDAO;
 import hvl.dat152.model.Cart;
 import hvl.dat152.model.Product;
+import hvl.dat152.services.ProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,11 +13,12 @@ import java.util.List;
 @WebServlet(name = "ProductsServlet", urlPatterns = "/products")
 public class ProductsServlet extends HttpServlet {
 
-    ProductDAO productDAO = new ProductDAO();
+    ProductService productService = new ProductService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> productList = productDAO.getProductList();
+
+        List<Product> productList = productService.getProductList();
         request.setAttribute("productlist", productList);
 
         request.getRequestDispatcher("WEB-INF/products.jsp").forward(request, response);
@@ -32,7 +33,7 @@ public class ProductsServlet extends HttpServlet {
         Cart cart = (Cart) request.getSession().getAttribute("cart");
 
         // Add product to cart
-        cart.addProduct(productDAO.getProduct(pid));
+        productService.addProductToCart(cart, pid);
 
         response.sendRedirect("cart");
     }
