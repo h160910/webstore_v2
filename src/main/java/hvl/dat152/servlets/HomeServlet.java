@@ -15,7 +15,7 @@ import java.util.Locale;
 @WebServlet(name="HomeServlet", urlPatterns = "/home")
 public class HomeServlet extends HttpServlet {
 
-    private static final int COOKIE_MAX_AGE = 120; // seconds
+    private static final int COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // one year in seconds
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -31,10 +31,9 @@ public class HomeServlet extends HttpServlet {
                 }
             }
         } else {
-            // If no cookie found
-
-            // Get locale from HTTP request
+            // If no cookie found, get locale from HTTP request
             Locale locale = request.getLocale();
+
             Config.set(request.getSession(), Config.FMT_LOCALE, locale.getLanguage());
 
             // Create new cookie with locale

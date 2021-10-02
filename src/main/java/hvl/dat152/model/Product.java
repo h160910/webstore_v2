@@ -2,10 +2,10 @@ package hvl.dat152.model;
 
 public class Product {
 
-    private int pid;
-    private String name;
-    private double priceInEuros;
-    private String imageFile;
+    private final int pid;
+    private final String name;
+    private final double priceInEuros;
+    private final String imageFile;
 
     public Product(int pid, String name, double priceInEuros, String imageFile) {
         this.pid = pid;
