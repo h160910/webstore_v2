@@ -13,8 +13,10 @@
 <c:forEach var="product" items="${productlist}">
     <div>
         <h3>${product.name}</h3>
-        <span>${product.priceInEuros}</span>
         <img src="${product.imageFile}" alt="image_cup" width="200" height="200">
+        <p>Name: ${product.name}</p>
+        <p>Price: ${product.priceInEuros}</p>
+        <p>Description: ITEM DESCRIPTION HERE</p>
         <form method="post">
             <button type="submit" name="pid" value="${product.pid}">Add to cart</button>
         </form>
