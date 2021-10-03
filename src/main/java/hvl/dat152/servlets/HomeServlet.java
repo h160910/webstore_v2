@@ -16,6 +16,7 @@ import java.util.Locale;
 public class HomeServlet extends HttpServlet {
 
     private static final int COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // one year in seconds
+    private static final Cart cart = new Cart();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -43,7 +44,6 @@ public class HomeServlet extends HttpServlet {
         }
 
         // Create cart and saves it to the Session object
-        Cart cart = new Cart();
         request.getSession().setAttribute("cart", cart);
 
         request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);

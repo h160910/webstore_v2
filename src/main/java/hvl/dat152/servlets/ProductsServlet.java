@@ -4,11 +4,16 @@ import hvl.dat152.model.Cart;
 import hvl.dat152.model.Product;
 import hvl.dat152.services.ProductService;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet(name = "ProductsServlet", urlPatterns = "/products")
 public class ProductsServlet extends HttpServlet {
@@ -18,8 +23,12 @@ public class ProductsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<Product> productList = productService.getProductList();
-        request.setAttribute("productlist", productList);
+        var obj = Config.get(request.getSession(), Config.FMT_LOCALE); // "xx_XX"
+        Locale currentLocale = productService.createLocale(obj);
+
+        HashMap<Integer, Object[]> priceList = productService.getProductListWithCurrency(currentLocale);
+
+        request.setAttribute("pricelist", priceList);
 
         request.getRequestDispatcher("WEB-INF/products.jsp").forward(request, response);
     }

@@ -12,10 +12,10 @@ public class ProductDAO {
 
     public ProductDAO() {
         productList = Arrays.asList(
-                new Product(32, "White Cup", 7.50, baseUrl+"/whitecup.jpg"),
-                new Product(33, "Black Cup", 7.50, baseUrl+"/blackcup.jpg"),
+                new Product(32, "White Cup", 8899999.50, baseUrl+"/whitecup.jpg"),
+                new Product(33, "Black Cup", 3.50, baseUrl+"/blackcup.jpg"),
                 new Product(21, "Doctor Who Cup", 7.50, baseUrl+"/doctorwho.jpg"),
-                new Product(65, "Swan Cup", 7.50, baseUrl+"/swan.jpg")
+                new Product(65, "Swan Cup", 12.99, baseUrl+"/swan.jpg")
                 );
     }
 

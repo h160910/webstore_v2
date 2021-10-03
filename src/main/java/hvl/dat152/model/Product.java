@@ -4,7 +4,7 @@ public class Product {
 
     private final int pid;
     private final String name;
-    private final double priceInEuros;
+    private double priceInEuros;
     private final String imageFile;
 
     public Product(int pid, String name, double priceInEuros, String imageFile) {
@@ -30,9 +30,13 @@ public class Product {
         return imageFile;
     }
 
+    public void convertPrice(double priceInEuros) {
+        this.priceInEuros = priceInEuros;
+    }
+
     @Override
     public String toString() {
-        return "[" + pid + "] " + name;
+        return "[" + pid + "] " + name + " (" +  priceInEuros + ")";
     }
 
 }
