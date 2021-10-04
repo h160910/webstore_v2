@@ -35,18 +35,6 @@ public class ProductService {
         return pricelist;
     }
 
-    public HashMap<Integer, Double> getPrices(Locale locale) {
-        HashMap<Integer, Double> prices = new HashMap<>();
-
-        for (Product p : productDAO.getProductList()) {
-            Double localePrice = CurrencyConverter.convertToCurrency(locale, p.getPriceInEuros());
-
-            prices.put(p.getPid(), localePrice);
-        }
-
-        return prices;
-    }
-
     // Creates a locale based on the object retrieved from Config.FMT_LOCALE
     public Locale createLocale(Object obj) {
 
