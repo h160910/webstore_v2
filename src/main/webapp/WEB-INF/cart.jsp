@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="dat152-libs" prefix="ctg"%>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <c:set var="cart" scope="page" value="${sessionScope.cart}"/>
@@ -32,7 +34,9 @@
             <fmt:message key="product.${item.key.pid}.name" />
         </td>
         <td>
-            <fmt:message key="product.${item.key.pid}.desc" />
+            <ctg:shorttext maxchars="10">
+                <fmt:message key="product.${item.key.pid}.desc" />
+            </ctg:shorttext>
         </td>
         <td> ${pricelist.get(item.key.pid)} </td>
         <td> ${item.value} </td>

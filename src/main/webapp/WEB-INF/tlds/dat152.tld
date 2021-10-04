@@ -17,5 +17,14 @@
         </attribute>
     </tag>
 
+    <tag>
+        <name>shorttext</name>
+        <tag-class>hvl.dat152.utils.ShortTextTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>maxchars</name>
+            <required>true</required>
+        </attribute>
+    </tag>
 
 </taglib>
