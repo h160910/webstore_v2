@@ -46,5 +46,7 @@
     <a href="${pageContext.request.contextPath}/products"><fmt:message key="products" /></a>
 </p>
 </fmt:bundle>
+
+<p><jsp:include page="copyright.jsp"/></p>
 </body>
 </html>
