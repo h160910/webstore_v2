@@ -26,9 +26,11 @@ public class ProductsServlet extends HttpServlet {
         var obj = Config.get(request.getSession(), Config.FMT_LOCALE); // "xx_XX"
         Locale currentLocale = productService.createLocale(obj);
 
-        HashMap<Integer, Object[]> priceList = productService.getProductListWithCurrency(currentLocale);
+        HashMap<Integer, String> pricelist = productService.getProductListWithCurrency(currentLocale);
+        request.getSession().setAttribute("pricelist", pricelist);
 
-        request.setAttribute("pricelist", priceList);
+        List<Product> productlist = productService.getProductList();
+        request.setAttribute("productlist", productlist);
 
         request.getRequestDispatcher("WEB-INF/products.jsp").forward(request, response);
     }

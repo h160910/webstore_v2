@@ -6,6 +6,7 @@ import hvl.dat152.model.Product;
 import hvl.dat152.utils.CurrencyConverter;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class ProductService {
@@ -14,26 +15,37 @@ public class ProductService {
 
     public void addProductToCart(Cart cart, int id) {
         Product p = productDAO.getProduct(id);
-        cart.addProduct(p);
+        cart.addToCart(p);
+    }
+
+    public List<Product> getProductList() {
+        return productDAO.getProductList();
     }
 
     // Converts the prices of products to correct currency based on locale
-    public HashMap<Integer, Object[]> getProductListWithCurrency(Locale locale) {
-        HashMap<Integer, Object[]> pricelist = new HashMap<>();
+    public HashMap<Integer, String> getProductListWithCurrency(Locale locale) {
+        HashMap<Integer, String> pricelist = new HashMap<>();
 
         for (Product p : productDAO.getProductList()) {
             String localePrice = CurrencyConverter.convertToCurrencyString(locale, p.getPriceInEuros());
 
-            Object[] values = new Object[2];
-            values[0] = localePrice;
-            values[1] = p.getImageFile();
-
-            pricelist.put(p.getPid(), values);
+            pricelist.put(p.getPid(), localePrice);
         }
 
         return pricelist;
     }
 
+    public HashMap<Integer, Double> getPrices(Locale locale) {
+        HashMap<Integer, Double> prices = new HashMap<>();
+
+        for (Product p : productDAO.getProductList()) {
+            Double localePrice = CurrencyConverter.convertToCurrency(locale, p.getPriceInEuros());
+
+            prices.put(p.getPid(), localePrice);
+        }
+
+        return prices;
+    }
 
     // Creates a locale based on the object retrieved from Config.FMT_LOCALE
     public Locale createLocale(Object obj) {

@@ -2,26 +2,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<c:set var="pricelist" scope="page" value="${requestScope.pricelist}"/>
+<c:set var="pricelist" scope="page" value="${sessionScope.pricelist}" />
+<c:set var="productlist" scope="page" value="${requestScope.productlist}" />
 
+<fmt:bundle basename="webstoretexts">
 <html>
 <head>
-    <title>Products</title>
+    <title><fmt:message key="products" /></title>
 </head>
 <body>
-<fmt:bundle basename="webstoretexts">
+<p><jsp:include page="chooseLanguage.jsp"/></p>
 
 <div>
-<c:forEach var="item" items="${pricelist}">
+<c:forEach var="item" items="${productlist}">
     <div>
-        <h3><fmt:message key="product.${item.key}.name" /></h3>
-        <img src="${item.value[1]}" alt="image_cup" width="200" height="200">
-        <p>Name: <fmt:message key="product.${item.key}.name" /></p>
-        <p>Price: ${item.value[0]}</p>
-        <p>Description: <fmt:message key="product.${item.key}.desc" /></p>
+        <h3><fmt:message key="product.${item.pid}.name" /></h3>
+
+        <img src="${item.imageFile}" alt="image_cup" width="200" height="200">
+
+        <p><fmt:message key="name" />: <fmt:message key="product.${item.pid}.name" /></p>
+
+        <p><fmt:message key="price" />: ${pricelist.get(item.pid)}</p>
+
+        <p><fmt:message key="description" />: <fmt:message key="product.${item.pid}.desc" /></p>
 
         <form method="post">
-            <button type="submit" name="pid" value="${item.key}">Add to cart</button>
+            <button type="submit" name="pid" value="${item.pid}"><fmt:message key="addtocart" /></button>
         </form>
 
     </div>
@@ -29,9 +35,8 @@
 </div>
 
 <p>
-    <a href="${pageContext.request.contextPath}/home">Home</a>
-    <br>
-    <a href="${pageContext.request.contextPath}/cart">Cart</a>
+    <a href="${pageContext.request.contextPath}/home"><fmt:message key="home" /></a>
+    <a href="${pageContext.request.contextPath}/cart"><fmt:message key="cart"/></a>
 </p>
 
 </fmt:bundle>
